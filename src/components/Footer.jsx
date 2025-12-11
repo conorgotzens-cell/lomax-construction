@@ -1,5 +1,6 @@
 import React from 'react';
 import { MapPin, Phone, Mail } from 'lucide-react';
+import { trackEvent } from '../utils/analytics';
 import './Footer.css';
 
 const Footer = () => {
@@ -21,9 +22,23 @@ const Footer = () => {
                 </div>
                 <div className="footer-section">
                     <h3>Contact Us</h3>
-                    <p className="contact-item"><MapPin size={16} /> Colfax, NC (Triad Region)</p>
-                    <p className="contact-item"><Phone size={16} /> (336) 690-0052</p>
-                    <p className="contact-item"><Mail size={16} /> info@lomaxconstruction.com</p>
+                    <div className="contact-item"><MapPin size={16} /> Colfax, NC (Triad Region)</div>
+                    <a
+                        href="tel:3366900052"
+                        className="contact-item"
+                        style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'inherit', textDecoration: 'none' }}
+                        onClick={() => trackEvent('click_call', 'Footer', 'Phone Number')}
+                    >
+                        <Phone size={16} /> (336) 690-0052
+                    </a>
+                    <a
+                        href="mailto:info@lomaxconstruction.com"
+                        className="contact-item"
+                        style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', color: 'inherit', textDecoration: 'none' }}
+                        onClick={() => trackEvent('click_email', 'Footer', 'Email Address')}
+                    >
+                        <Mail size={16} /> info@lomaxconstruction.com
+                    </a>
                 </div>
             </div>
             <div className="footer-bottom">

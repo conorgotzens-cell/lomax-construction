@@ -8,10 +8,13 @@ import About from './pages/About';
 import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
 import Projects from './pages/Projects';
+import ProjectDetail from './pages/ProjectDetail';
 import MarketDetail from './pages/MarketDetail';
 import Locations from './pages/Locations';
 import LocationDetail from './pages/LocationDetail';
 import Contact from './pages/Contact';
+import Insights from './pages/Insights';
+import BlogPost from './pages/BlogPost';
 
 function App() {
   return (
@@ -26,9 +29,12 @@ function App() {
             <Route path="/services" element={<Services />} />
             <Route path="/services/:slug" element={<ServiceDetail />} />
             <Route path="/projects" element={<Projects />} />
+            <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="/markets/:slug" element={<MarketDetail />} />
             <Route path="/locations" element={<Locations />} />
             <Route path="/locations/:slug" element={<LocationDetail />} />
+            <Route path="/insights" element={<Insights />} />
+            <Route path="/insights/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
           </Routes>
         </main>

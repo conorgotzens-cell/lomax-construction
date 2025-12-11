@@ -1,0 +1,18 @@
+# SPA Fallback for React Router (Essential)
+/*  /index.html  200
+
+# Legacy URL Redirects (Preserve Backlinks)
+/index.html   /          301
+/home         /          301
+/about-us     /about     301
+/our-team     /about     301
+/history      /about     301
+/staff        /about     301
+/services.html /services 301
+/contact-us   /contact   301
+/portfolio    /projects  301
+/gallery      /projects  301
+/news         /          301
+
+# Specific High-Value Redirects (examples)
+# /old-project-name  /projects/new-project-slug  301

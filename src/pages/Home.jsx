@@ -1,16 +1,9 @@
+import { Link } from 'react-router-dom';
+import { HardHat, Building2, Ruler, ArrowRight } from 'lucide-react';
+import SEO from '../components/SEO';
 import nattyGreenesLogo from '../assets/images/clients/natty-greenes.png';
 import joymongersLogo from '../assets/images/clients/joymongers.png';
-
-// ... (keep existing imports)
-
-// ... inside component ...
-
-<div className="partners-grid" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '4rem', flexWrap: 'wrap', opacity: 1 }}>
-    <img src={nattyGreenesLogo} alt="Natty Greene's Brewery Construction Project" style={{ height: '80px', objectFit: 'contain' }} />
-    <img src={joymongersLogo} alt="Joymongers Brewing Commercial Upfit" style={{ height: '90px', objectFit: 'contain' }} />
-    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#555', fontFamily: 'Oswald, sans-serif' }}>UNC Health</div>
-    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#555', fontFamily: 'Oswald, sans-serif' }}>Elon University</div>
-</div>
+import './Home.css';
 
 const Home = () => {
     const schema = {
@@ -30,7 +23,11 @@ const Home = () => {
         "areaServed": {
             "@type": "State",
             "name": "North Carolina"
-        }
+        },
+        "sameAs": [
+            "https://www.linkedin.com/company/lomax-construction-placeholder",
+            "https://www.facebook.com/lomaxconstruction-placeholder"
+        ]
     };
 
     return (
@@ -67,7 +64,7 @@ const Home = () => {
                 <div className="container">
                     <div className="about-grid">
                         <div className="about-text">
-                            <h4 className="section-label">Our Expertise</h4>
+                            <span className="section-label">Our Expertise</span>
                             <h2>Building Lasting Partnerships</h2>
                             <div className="gold-line"></div>
                             <p>
@@ -99,7 +96,7 @@ const Home = () => {
             <section className="section section-alt services-section">
                 <div className="container">
                     <div className="section-header text-center">
-                        <h4 className="section-label">Featured Markets</h4>
+                        <span className="section-label">Featured Markets</span>
                         <h2>We Serve Clients Across NC</h2>
                         <div className="gold-line center-line"></div>
                     </div>

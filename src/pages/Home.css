@@ -35,7 +35,8 @@
 }
 
 .text-highlight {
-    color: var(--color-accent);
+    color: #FFD700;
+    /* Gold for better contrast on dark overlay */
 }
 
 .hero-subtitle {
@@ -48,6 +49,17 @@
 .hero-actions {
     display: flex;
     gap: 1rem;
+}
+
+.hero .btn:not(.btn-secondary) {
+    background-color: #FFD700;
+    color: var(--color-accent);
+    border: none;
+}
+
+.hero .btn:not(.btn-secondary):hover {
+    background-color: #ffe44d;
+    transform: translateY(-2px);
 }
 
 .btn-white {

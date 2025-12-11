@@ -12,12 +12,29 @@ const Locations = () => {
         { title: 'Eastern NC', slug: 'eastern-nc', desc: 'Coastal and eastern municipalities' }
     ];
 
+    const locationSchema = {
+        "@context": "https://schema.org",
+        "@type": "GeneralContractor",
+        "name": "Lomax Construction",
+        "url": "https://www.lomaxconstruction.com",
+        "areaServed": [
+            { "@type": "City", "name": "Greensboro" },
+            { "@type": "City", "name": "Winston-Salem" },
+            { "@type": "City", "name": "High Point" },
+            { "@type": "City", "name": "Charlotte" },
+            { "@type": "City", "name": "Raleigh" },
+            { "@type": "City", "name": "Durham" },
+            { "@type": "AdministrativeArea", "name": "North Carolina" }
+        ]
+    };
+
     return (
         <div className="page-wrapper">
             <SEO
                 title="Commercial Construction Locations NC | Lomax Construction"
                 description="Lomax Construction serves commercial clients across North Carolina, including Greensboro, Charlotte, Raleigh-Durham, Western and Eastern NC."
                 canonical="https://www.lomaxconstruction.com/locations"
+                schema={locationSchema}
             />
             <section className="page-hero locations-hero">
                 <div className="container">

@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X, Phone } from 'lucide-react';
 import logo from '../assets/logo.svg';
+import { trackEvent } from '../utils/analytics';
 import './Header.css';
 
 const Header = () => {
@@ -12,11 +13,11 @@ const Header = () => {
     const closeMenu = () => setIsOpen(false);
 
     const navLinks = [
-        { name: 'Home', path: '/' },
         { name: 'Company Overview', path: '/about' },
         { name: 'Services', path: '/services' },
         { name: 'Projects', path: '/projects' },
         { name: 'Locations', path: '/locations' },
+        { name: 'Insights', path: '/insights' },
         { name: 'Contact', path: '/contact' },
     ];
 
@@ -25,7 +26,13 @@ const Header = () => {
             <div className="header-top">
                 <div className="container header-top-content">
                     <div className="contact-info">
-                        <Phone size={16} /> <span>(336) 690-0052</span>
+                        <a
+                            href="tel:3366900052"
+                            style={{ color: 'inherit', textDecoration: 'none', display: 'flex', alignItems: 'center', gap: '8px' }}
+                            onClick={() => trackEvent('click_call', 'Header', 'Phone Number')}
+                        >
+                            <Phone size={16} /> <span>(336) 690-0052</span>
+                        </a>
                     </div>
                     <div className="social-links">
                         {/* Social icons would go here */}
@@ -38,7 +45,11 @@ const Header = () => {
                         <img src={logo} alt="Lomax Construction" className="logo-img" />
                     </Link>
 
-                    <button className="mobile-menu-btn" onClick={toggleMenu}>
+                    <button
+                        className="mobile-menu-btn"
+                        onClick={toggleMenu}
+                        aria-label={isOpen ? "Close menu" : "Open menu"}
+                    >
                         {isOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
 
@@ -56,7 +67,14 @@ const Header = () => {
                                 </li>
                             ))}
                         </ul>
-                        <Link to="/contact" className="btn request-quote-btn" onClick={closeMenu}>
+                        <Link
+                            to="/contact"
+                            className="btn request-quote-btn"
+                            onClick={() => {
+                                closeMenu();
+                                trackEvent('click_cta', 'Header', 'Request a Quote');
+                            }}
+                        >
                             Request a Quote
                         </Link>
                     </nav>

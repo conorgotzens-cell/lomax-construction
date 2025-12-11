@@ -1,17 +1,45 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import './PageStyles.css';
 import EricLomaxImg from '../assets/images/team/eric-lomax.jpg';
-import Team1Img from '../assets/images/team/team-member-1.jpg'; // Using for John Lomax
+import JohnLomaxImg from '../assets/images/team/john-lomax.jpg'; // Corrected image
 import Team2Img from '../assets/images/team/team-member-2.jpg'; // Using for Travis Langley
 import Team3Img from '../assets/images/team/team-member-3.jpg'; // Using for Sandy Maggard
 
+import SEO from '../components/SEO';
+
 const About = () => {
+    const teamSchema = [
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "John Lomax",
+            "jobTitle": "Founder & President",
+            "worksFor": { "@type": "Organization", "name": "Lomax Construction" },
+            "image": "https://www.lomaxconstruction.com/assets/images/team/team-member-1.jpg"
+        },
+        {
+            "@context": "https://schema.org",
+            "@type": "Person",
+            "name": "Travis Langley",
+            "jobTitle": "Partner & VP Pre-Construction",
+            "worksFor": { "@type": "Organization", "name": "Lomax Construction" },
+            "image": "https://www.lomaxconstruction.com/assets/images/team/team-member-2.jpg"
+        }
+    ];
+
     return (
         <div className="page-wrapper">
+            <SEO
+                title="About Us | Commercial Construction Company NC"
+                description="Lomax Construction, founded in 1996, is a premier commercial general contractor in NC. Meet our leadership team."
+                canonical="https://www.lomaxconstruction.com/about"
+                schema={teamSchema}
+            />
             <section className="page-hero about-hero">
                 <div className="container">
-                    <h1>Premier General Contractor in NC</h1>
-                    <p style={{ fontSize: '1.25rem', marginTop: '1rem', maxWidth: '800px' }}>
+                    <h1 style={{ position: 'relative', zIndex: 1 }}>Premier General Contractor in NC</h1>
+                    <p style={{ fontSize: '1.25rem', marginTop: '1rem', maxWidth: '800px', position: 'relative', zIndex: 1 }}>
                         Building Trust & Excellence Since 1996 | Healthcare, Commercial, & Education Specialists
                     </p>
                 </div>
@@ -75,7 +103,7 @@ const About = () => {
                             {/* John Lomax */}
                             <div className="team-card">
                                 <div className="team-image" style={{ height: '300px', overflow: 'hidden', marginBottom: '1rem', background: '#eee' }}>
-                                    <img src={Team1Img} alt="John Lomax - Founder & President" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                    <img src={JohnLomaxImg} alt="John Lomax - Founder & President" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                                 </div>
                                 <h4>John Lomax</h4>
                                 <p className="team-role" style={{ color: 'var(--color-accent)', fontWeight: 'bold', fontSize: '0.9rem' }}>FOUNDER & PRESIDENT</p>
@@ -129,11 +157,19 @@ const About = () => {
                             Our headquarters is in <strong>Colfax, NC</strong>, right in the heart of the Triad. We focus on projects we can reach quickly to ensure hands-on management.
                         </p>
                         <h4 style={{ marginTop: '1.5rem', fontSize: '1.1rem' }}>Primary Markets:</h4>
-                        <ul style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: '1rem', listStyle: 'none', padding: 0, marginTop: '1rem' }}>
-                            <li style={{ background: '#f0f4f8', padding: '0.5rem 1rem', borderRadius: '4px', textAlign: 'center' }}>Piedmont Triad</li>
-                            <li style={{ background: '#f0f4f8', padding: '0.5rem 1rem', borderRadius: '4px', textAlign: 'center' }}>Raleigh / Durham</li>
-                            <li style={{ background: '#f0f4f8', padding: '0.5rem 1rem', borderRadius: '4px', textAlign: 'center' }}>Charlotte Region</li>
-                            <li style={{ background: '#f0f4f8', padding: '0.5rem 1rem', borderRadius: '4px', textAlign: 'center' }}>Central NC 12 Counties</li>
+                        <ul className="market-list">
+                            <li>
+                                <Link to="/locations/triad" className="market-link">Piedmont Triad</Link>
+                            </li>
+                            <li>
+                                <Link to="/locations/raleigh-durham" className="market-link">Raleigh / Durham</Link>
+                            </li>
+                            <li>
+                                <Link to="/locations/charlotte" className="market-link">Charlotte Region</Link>
+                            </li>
+                            <li>
+                                <Link to="/locations/triad" className="market-link">Central NC 12 Counties</Link>
+                            </li>
                         </ul>
                     </div>
 

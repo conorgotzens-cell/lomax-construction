@@ -38,7 +38,10 @@ SEO.propTypes = {
     title: PropTypes.string.isRequired,
     description: PropTypes.string.isRequired,
     canonical: PropTypes.string,
-    schema: PropTypes.object
+    schema: PropTypes.oneOfType([
+        PropTypes.object,
+        PropTypes.array
+    ])
 };
 
 export default SEO;
