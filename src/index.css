@@ -1,0 +1,117 @@
+:root {
+  /* Brand Colors */
+  --color-primary: #0E94A1;
+  /* Teal */
+  --color-accent: #002d5b;
+  /* Navy Blue (Old Primary) */
+  --color-text: #333333;
+  --color-text-light: #666666;
+  --color-background: #ffffff;
+  --color-background-alt: #f4f4f4;
+  /* Light Gray for sections */
+  --color-white: #ffffff;
+
+  /* Typography */
+  --font-heading: 'Oswald', sans-serif;
+  --font-body: 'Inter', sans-serif;
+
+  /* Spacing */
+  --container-width: 1200px;
+  --spacing-sm: 0.5rem;
+  --spacing-md: 1rem;
+  --spacing-lg: 2rem;
+  --spacing-xl: 4rem;
+
+  /* Transitions */
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.3s ease;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-background);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-heading);
+  color: var(--color-primary);
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: var(--spacing-md);
+  text-transform: uppercase;
+  /* Industrial feel */
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+  transition: color var(--transition-fast);
+}
+
+ul {
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* Utilities */
+.container {
+  max-width: var(--container-width);
+  margin: 0 auto;
+  padding: 0 var(--spacing-md);
+}
+
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  background-color: var(--color-accent);
+  color: var(--color-white);
+  font-family: var(--font-heading);
+  font-weight: bold;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: background-color var(--transition-normal), transform var(--transition-fast);
+}
+
+.btn:hover {
+  background-color: #b58917;
+  /* Darker Gold */
+  transform: translateY(-2px);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  border: 2px solid var(--color-accent);
+  color: var(--color-accent);
+}
+
+.btn-secondary:hover {
+  background-color: var(--color-accent);
+  color: var(--color-white);
+}
+
+.section {
+  padding: var(--spacing-xl) 0;
+}
+
+.section-alt {
+  background-color: var(--color-background-alt);
+}
