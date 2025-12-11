@@ -1,8 +1,16 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { ArrowRight, HardHat, Building2, Ruler } from 'lucide-react';
-import SEO from '../components/SEO';
-import './Home.css';
+import nattyGreenesLogo from '../assets/images/clients/natty-greenes.png';
+import joymongersLogo from '../assets/images/clients/joymongers.png';
+
+// ... (keep existing imports)
+
+// ... inside component ...
+
+<div className="partners-grid" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '4rem', flexWrap: 'wrap', opacity: 1 }}>
+    <img src={nattyGreenesLogo} alt="Natty Greene's Brewery Construction Project" style={{ height: '80px', objectFit: 'contain' }} />
+    <img src={joymongersLogo} alt="Joymongers Brewing Commercial Upfit" style={{ height: '90px', objectFit: 'contain' }} />
+    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#555', fontFamily: 'Oswald, sans-serif' }}>UNC Health</div>
+    <div style={{ fontSize: '1.5rem', fontWeight: 'bold', color: '#555', fontFamily: 'Oswald, sans-serif' }}>Elon University</div>
+</div>
 
 const Home = () => {
     const schema = {
@@ -123,13 +131,12 @@ const Home = () => {
             <section className="section section-partners" style={{ padding: '4rem 0', background: '#fff', borderTop: '1px solid #eee' }}>
                 <div className="container text-center">
                     <p style={{ textTransform: 'uppercase', letterSpacing: '2px', color: '#999', fontSize: '0.9rem', marginBottom: '2rem' }}>Trusted by Clients Across the Region</p>
-                    <div className="partners-grid" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '4rem', flexWrap: 'wrap', opacity: 0.7 }}>
-                        {/* Client Logos using imports below would be better but doing inline for speed with new assets */}
-                        <img src="/src/assets/images/clients/natty-greenes.png" alt="Natty Greene's Brewery Construction Project" style={{ height: '60px', objectFit: 'contain', filter: 'grayscale(100%)' }} />
-                        <img src="/src/assets/images/clients/joymongers.png" alt="Joymongers Brewing Commercial Upfit" style={{ height: '70px', objectFit: 'contain', filter: 'grayscale(100%)' }} />
-                        {/* Placeholder for others */}
-                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#ccc' }}>UNC Health</div>
-                        <div style={{ fontSize: '1.2rem', fontWeight: 'bold', color: '#ccc' }}>Elon University</div>
+                    <div className="partners-grid" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '4rem', flexWrap: 'wrap', opacity: 1 }}>
+                        <img src={nattyGreenesLogo} alt="Natty Greene's Brewery Construction Project" style={{ height: '80px', objectFit: 'contain' }} />
+                        <img src={joymongersLogo} alt="Joymongers Brewing Commercial Upfit" style={{ height: '90px', objectFit: 'contain' }} />
+                        {/* Text placeholders for clients without logos yet */}
+                        <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#444', fontFamily: 'Oswald, sans-serif', textTransform: 'uppercase' }}>UNC Health</div>
+                        <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#444', fontFamily: 'Oswald, sans-serif', textTransform: 'uppercase' }}>Elon University</div>
                     </div>
                 </div>
             </section>
