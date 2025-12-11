@@ -35,10 +35,10 @@ const LocationDetail = () => {
                 ...(isHQ ? {
                     "address": {
                         "@type": "PostalAddress",
-                        "streetAddress": "123 Construction Way", // Placeholder
-                        "addressLocality": "Colfax",
-                        "addressRegion": "NC",
-                        "postalCode": "27235",
+                        "streetAddress": location.address?.street,
+                        "addressLocality": location.address?.city,
+                        "addressRegion": location.address?.state,
+                        "postalCode": location.address?.zip,
                         "addressCountry": "US"
                     }
                 } : {

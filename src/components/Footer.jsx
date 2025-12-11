@@ -22,7 +22,7 @@ const Footer = () => {
                 </div>
                 <div className="footer-section">
                     <h3>Contact Us</h3>
-                    <div className="contact-item"><MapPin size={16} /> Colfax, NC (Triad Region)</div>
+                    <div className="contact-item"><MapPin size={16} /> 8517 Norcross Rd. Ste. A, Colfax, NC 27235</div>
                     <a
                         href="tel:3366900052"
                         className="contact-item"

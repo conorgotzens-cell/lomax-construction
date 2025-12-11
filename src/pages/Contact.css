@@ -127,6 +127,12 @@
     height: fit-content;
 }
 
+@media (max-width: 600px) {
+    .form-container {
+        padding: 1.5rem;
+    }
+}
+
 .form-container h3 {
     margin-top: 0;
     margin-bottom: 1.5rem;

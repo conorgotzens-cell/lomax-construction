@@ -1,6 +1,7 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { servicesData } from '../data/siteContent';
+import { servicesData, projectsData } from '../data/siteContent';
+import ProjectCard from '../components/ProjectCard';
 import { ArrowLeft, CheckCircle } from 'lucide-react';
 import SEO from '../components/SEO';
 import DOMPurify from 'dompurify';
@@ -82,6 +83,35 @@ const ServiceDetail = () => {
                                 </div>
                             </div>
                         )}
+
+                        {/* Related Projects Section */}
+                        {(() => {
+                            const serviceKeywords = {
+                                'preconstruction': ['Preconstruction', 'Design-Build'],
+                                'design-build': ['Design-Build'],
+                                'construction-management': ['Construction Management', 'CM'],
+                                'general-contracting': ['General Contracting'],
+                                'renovations-upfits': ['Renovation', 'Tenant Upfit', 'Expansion', 'Upfit']
+                            };
+
+                            const keywords = serviceKeywords[slug] || [];
+                            const relatedProjects = Object.entries(projectsData).filter(([_, project]) =>
+                                project.services && project.services.some(s => keywords.some(k => s.includes(k)))
+                            );
+
+                            if (relatedProjects.length === 0) return null;
+
+                            return (
+                                <div className="related-projects mt-large">
+                                    <h3>Featured {service.title} Projects</h3>
+                                    <div className="projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(300px, 1fr))', gap: '2rem', marginTop: '1.5rem' }}>
+                                        {relatedProjects.map(([projectSlug, project]) => (
+                                            <ProjectCard key={projectSlug} slug={projectSlug} project={project} />
+                                        ))}
+                                    </div>
+                                </div>
+                            );
+                        })()}
 
                         <div className="cta-box mt-large">
                             <h3>Ready to start your {service.title.toLowerCase()} project?</h3>

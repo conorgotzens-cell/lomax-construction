@@ -103,6 +103,10 @@
     background-image: url('https://images.unsplash.com/photo-1423666697536-13a43a6cd71c?auto=format&fit=crop&q=80');
 }
 
+.markets-hero {
+    background-image: url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80');
+}
+
 /* Project Detail Gallery */
 .gallery-grid {
     display: grid;

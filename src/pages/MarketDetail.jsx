@@ -1,6 +1,6 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { marketsData } from '../data/siteContent';
+import { marketsData, projectsData } from '../data/siteContent';
 import { ArrowLeft } from 'lucide-react';
 import SEO from '../components/SEO';
 import DOMPurify from 'dompurify';
@@ -13,6 +13,11 @@ const MarketDetail = () => {
     if (!market) {
         return <div className="container" style={{ padding: '5rem' }}><h2>Market not found</h2><Link to="/projects" className="btn">Back to Projects</Link></div>;
     }
+
+    // Filter projects for this market
+    const relatedProjects = Object.entries(projectsData)
+        .filter(([_, project]) => project.marketSlug === slug)
+        .map(([slug, project]) => ({ slug, ...project }));
 
     const schemas = [];
 
@@ -56,7 +61,14 @@ const MarketDetail = () => {
                 canonical={`https://www.lomaxconstruction.com/markets/${slug}`}
                 schema={schemas.length > 0 ? schemas : undefined}
             />
-            <section className="page-hero market-detail-hero">
+            <section
+                className="page-hero market-detail-hero"
+                style={{
+                    backgroundImage: market.image ? `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${market.image})` : undefined,
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center'
+                }}
+            >
                 <div className="container">
                     <div className="breadcrumb">
                         <Link to="/projects" className="back-link"><ArrowLeft size={16} /> Back to Projects</Link>
@@ -82,6 +94,29 @@ const MarketDetail = () => {
                                         </li>
                                     ))}
                                 </ul>
+                            </div>
+                        )}
+
+                        {/* Related Projects Section */}
+                        {relatedProjects.length > 0 && (
+                            <div className="related-projects mt-large">
+                                <h3>Featured Projects in {market.title}</h3>
+                                <div className="gold-line"></div>
+                                <div className="projects-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))', gap: '1.5rem', marginTop: '1.5rem' }}>
+                                    {relatedProjects.map((project) => (
+                                        <div key={project.slug} className="project-card" style={{ boxShadow: '0 2px 8px rgba(0,0,0,0.1)', background: '#fff', borderRadius: '4px', overflow: 'hidden' }}>
+                                            <div style={{ height: '160px', overflow: 'hidden' }}>
+                                                <img src={project.image} alt={project.title} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                                            </div>
+                                            <div style={{ padding: '1rem' }}>
+                                                <h4 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem' }}>{project.title}</h4>
+                                                <Link to={`/projects/${project.slug}`} style={{ color: 'var(--color-primary)', fontWeight: 'bold', fontSize: '0.9rem' }}>
+                                                    View Project →
+                                                </Link>
+                                            </div>
+                                        </div>
+                                    ))}
+                                </div>
                             </div>
                         )}
 

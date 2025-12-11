@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone, Mail, MapPin, Clock, Award } from 'lucide-react';
 import { trackEvent } from '../utils/analytics';
 import SEO from '../components/SEO';
@@ -6,17 +6,17 @@ import './PageStyles.css'; // Keep global styles if needed
 import './Contact.css'; // Import the new specific styles
 
 const Contact = () => {
+    const [formStatus, setFormStatus] = useState('idle'); // idle, submitting, success, error
+
     const contactSchema = {
         "@context": "https://schema.org",
         "@type": "GeneralContractor",
         "name": "Lomax Construction",
         "url": "https://www.lomaxconstruction.com",
-        "logo": "https://www.lomaxconstruction.com/logo.png",
-        "image": "https://www.lomaxconstruction.com/contact-hero.jpg",
         "description": "Premier commercial general contractor serving North Carolina. Specializing in healthcare, education, and corporate construction.",
         "address": {
             "@type": "PostalAddress",
-            "streetAddress": "P.O. Box 903", // Using PO Box if physical unavailable, or Colfax general
+            "streetAddress": "8517 Norcross Rd. Ste. A",
             "addressLocality": "Colfax",
             "addressRegion": "NC",
             "postalCode": "27235",
@@ -52,7 +52,7 @@ const Contact = () => {
         },
         "founder": {
             "@type": "Person",
-            "name": "Eric Lomax"
+            "name": "John Lomax"
         },
         "foundingDate": "1996",
         "priceRange": "$$"
@@ -149,7 +149,7 @@ const Contact = () => {
                                     <div className="icon-box"><MapPin size={24} /></div>
                                     <div className="method-details">
                                         <strong>Headquarters</strong>
-                                        <div>Colfax, NC (Triad Region)</div>
+                                        <div>8517 Norcross Rd. Ste. A, Colfax, NC 27235</div>
                                         <div style={{ fontSize: '0.9rem', color: '#666', marginTop: '4px' }}>Serving the Southeast</div>
                                     </div>
                                 </div>
@@ -203,64 +203,85 @@ const Contact = () => {
                         {/* Right Column: Contact Form */}
                         <div className="form-container">
                             <h3>Request a Bid / Consultation</h3>
-                            <form
-                                name="contact"
-                                method="POST"
-                                data-netlify="true"
-                                className="contact-form"
-                                onSubmit={(e) => {
-                                    e.preventDefault();
-                                    const formData = new FormData(e.target);
-                                    fetch("/", {
-                                        method: "POST",
-                                        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                                        body: new URLSearchParams(formData).toString(),
-                                    })
-                                        .then(() => {
-                                            trackEvent('form_submit', 'Contact Page', 'Bid Request Form');
-                                            alert('Thank you! Your request has been received. We might contact you for more details.');
-                                            e.target.reset();
+                            {formStatus === 'success' ? (
+                                <div className="success-message" style={{ textAlign: 'center', padding: '2rem', backgroundColor: '#f0fff4', borderRadius: '8px', border: '1px solid #c6f6d5' }}>
+                                    <h4 style={{ color: '#2f855a', marginBottom: '1rem', fontSize: '1.5rem' }}>Thank You!</h4>
+                                    <p style={{ color: '#2c7a7b', fontSize: '1.1rem' }}>Your request has been received successfully.</p>
+                                    <p style={{ color: '#4a5568', marginTop: '0.5rem' }}>Our team will review your project details and get back to you shortly.</p>
+                                    <button
+                                        onClick={() => setFormStatus('idle')}
+                                        style={{ marginTop: '1.5rem', padding: '0.5rem 1rem', background: 'none', border: '1px solid #2f855a', color: '#2f855a', borderRadius: '4px', cursor: 'pointer' }}
+                                    >
+                                        Send Another Message
+                                    </button>
+                                </div>
+                            ) : (
+                                <form
+                                    name="contact"
+                                    method="POST"
+                                    data-netlify="true"
+                                    className="contact-form"
+                                    onSubmit={(e) => {
+                                        e.preventDefault();
+                                        setFormStatus('submitting');
+                                        const formData = new FormData(e.target);
+                                        fetch("/", {
+                                            method: "POST",
+                                            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                                            body: new URLSearchParams(formData).toString(),
                                         })
-                                        .catch((error) => alert('Submission failed. Please try again or call us directly.'));
-                                }}
-                            >
-                                <input type="hidden" name="form-name" value="contact" />
+                                            .then(() => {
+                                                trackEvent('form_submit', 'Contact Page', 'Bid Request Form');
+                                                setFormStatus('success');
+                                                e.target.reset();
+                                            })
+                                            .catch((error) => {
+                                                console.error(error);
+                                                setFormStatus('error');
+                                                alert('Submission failed. Please try again or call us directly.');
+                                            });
+                                    }}
+                                >
+                                    <input type="hidden" name="form-name" value="contact" />
 
-                                <div className="form-group">
-                                    <input id="name" name="name" type="text" placeholder="Your Name *" required />
-                                </div>
+                                    <div className="form-group">
+                                        <input id="name" name="name" type="text" placeholder="Your Name *" required />
+                                    </div>
 
-                                <div className="form-group">
-                                    <input id="email" name="email" type="email" placeholder="Email Address *" required />
-                                </div>
+                                    <div className="form-group">
+                                        <input id="email" name="email" type="email" placeholder="Email Address *" required />
+                                    </div>
 
-                                <div className="form-group">
-                                    <input id="phone" name="phone" type="tel" placeholder="Phone Number" />
-                                </div>
+                                    <div className="form-group">
+                                        <input id="phone" name="phone" type="tel" placeholder="Phone Number" />
+                                    </div>
 
-                                <div className="form-group">
-                                    <select id="projectType" name="projectType" style={{ color: '#666' }}>
-                                        <option value="" disabled selected>Project Type...</option>
-                                        <option value="Healthcare">Healthcare</option>
-                                        <option value="Education">Education</option>
-                                        <option value="Corporate/Office">Corporate / Office</option>
-                                        <option value="Industrial">Industrial / Manufacturing</option>
-                                        <option value="Retail/Hospitality">Retail / Hospitality</option>
-                                        <option value="Civic/Municipal">Civic / Municipal</option>
-                                        <option value="Other">Other</option>
-                                    </select>
-                                </div>
+                                    <div className="form-group">
+                                        <select id="projectType" name="projectType" style={{ color: '#666' }}>
+                                            <option value="" disabled selected>Project Type...</option>
+                                            <option value="Healthcare">Healthcare</option>
+                                            <option value="Education">Education</option>
+                                            <option value="Corporate/Office">Corporate / Office</option>
+                                            <option value="Industrial">Industrial / Manufacturing</option>
+                                            <option value="Retail/Hospitality">Retail / Hospitality</option>
+                                            <option value="Civic/Municipal">Civic / Municipal</option>
+                                            <option value="Other">Other</option>
+                                        </select>
+                                    </div>
 
-                                <div className="form-group">
-                                    <input id="location" name="location" type="text" placeholder="Project Location (City, State)" />
-                                </div>
+                                    <div className="form-group">
+                                        <input id="location" name="location" type="text" placeholder="Project Location (City, State)" />
+                                    </div>
 
-                                <div className="form-group">
-                                    <textarea id="details" name="details" rows="5" placeholder="Tell us about your project (Scope, Budget, Timeline)..." required></textarea>
-                                </div>
+                                    <div className="form-group">
+                                        <textarea id="details" name="details" rows="5" placeholder="Tell us about your project (Scope, Budget, Timeline)..." required></textarea>
+                                    </div>
 
-                                <button type="submit" className="submit-btn">Submit Request</button>
-                            </form>
+                                    <button type="submit" className="submit-btn" disabled={formStatus === 'submitting'}>
+                                        {formStatus === 'submitting' ? 'Sending...' : 'Submit Request'}
+                                    </button>
+                                </form>
+                            )}
                         </div>
                     </div>
 
@@ -268,14 +289,14 @@ const Contact = () => {
                     <div className="map-section">
                         <div className="map-container">
                             <iframe
-                                src="https://maps.google.com/maps?q=Colfax%2C%20NC&t=&z=13&ie=UTF8&iwloc=&output=embed"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3224.0594172709116!2d-80.0044807!3d36.0920396!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8853041cee12cb85%3A0xe9322e0d6fdc4dbe!2sLomax%20Construction%20Inc!5e0!3m2!1sen!2sus!4v1765435144112!5m2!1sen!2sus"
                                 width="100%"
                                 height="450"
                                 style={{ border: 0 }}
                                 allowFullScreen=""
                                 loading="lazy"
                                 referrerPolicy="no-referrer-when-downgrade"
-                                title="Lomax Construction Service Area Center"
+                                title="Lomax Construction Inc Location"
                             ></iframe>
                         </div>
                     </div>

@@ -62,14 +62,15 @@
     transform: translateY(-2px);
 }
 
-.btn-white {
-    color: var(--color-white);
+.hero .btn-white {
+    background-color: var(--color-white);
+    color: var(--color-accent);
     border-color: var(--color-white);
 }
 
-.btn-white:hover {
-    background-color: var(--color-white);
-    color: var(--color-primary);
+.hero .btn-white:hover {
+    background-color: transparent;
+    color: var(--color-white);
 }
 
 /* Common Section Styles */
@@ -155,7 +156,7 @@
 /* Services Grid */
 .services-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
     gap: 2rem;
 }
 
@@ -210,6 +211,20 @@
     color: rgba(255, 255, 255, 0.8);
     font-size: 1.25rem;
     margin-bottom: 2.5rem;
+}
+
+/* Partners Section */
+.partners-grid img {
+    filter: grayscale(100%);
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.partners-grid img:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+    transform: scale(1.05);
 }
 
 @media (max-width: 768px) {

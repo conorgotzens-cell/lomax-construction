@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './PageStyles.css';
-import EricLomaxImg from '../assets/images/team/eric-lomax.jpg';
+import EricLomaxImg from '../assets/images/team/eric-lomax-new.png';
 import JohnLomaxImg from '../assets/images/team/john-lomax.jpg'; // Corrected image
 import Team2Img from '../assets/images/team/team-member-2.jpg'; // Using for Travis Langley
 import Team3Img from '../assets/images/team/team-member-3.jpg'; // Using for Sandy Maggard
@@ -16,7 +16,7 @@ const About = () => {
             "name": "John Lomax",
             "jobTitle": "Founder & President",
             "worksFor": { "@type": "Organization", "name": "Lomax Construction" },
-            "image": "https://www.lomaxconstruction.com/assets/images/team/team-member-1.jpg"
+            "image": "https://www.lomaxconstruction.com/assets/images/team/john-lomax.jpg"
         },
         {
             "@context": "https://schema.org",

@@ -64,7 +64,7 @@ const Locations = () => {
                                 Anchoring our operations, serving the immediate Triad region.
                             </p>
                             <div style={{ marginTop: '1rem', fontWeight: 'bold', color: 'var(--color-primary)' }}>
-                                Colfax, NC
+                                8517 Norcross Rd. Ste. A<br />Colfax, NC 27235
                             </div>
                         </div>
 

@@ -1,8 +1,12 @@
+import { useEffect, useRef } from 'react';
+import { motion, useInView, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { HardHat, Building2, Ruler, ArrowRight } from 'lucide-react';
 import SEO from '../components/SEO';
 import nattyGreenesLogo from '../assets/images/clients/natty-greenes.png';
 import joymongersLogo from '../assets/images/clients/joymongers.png';
+import uncHealthLogo from '../assets/images/clients/unc-health.png';
+import elonUniversityLogo from '../assets/images/clients/elon-university.png';
 import './Home.css';
 
 const Home = () => {
@@ -24,10 +28,10 @@ const Home = () => {
             "@type": "State",
             "name": "North Carolina"
         },
-        "sameAs": [
-            "https://www.linkedin.com/company/lomax-construction-placeholder",
-            "https://www.facebook.com/lomaxconstruction-placeholder"
-        ]
+        // "sameAs": [
+        //     "https://www.linkedin.com/company/lomax-construction-placeholder",
+        //     "https://www.facebook.com/lomaxconstruction-placeholder"
+        // ]
     };
 
     return (
@@ -79,14 +83,26 @@ const Home = () => {
                             <Link to="/about" className="text-link">Why Choose Lomax <ArrowRight size={16} /></Link>
                         </div>
                         <div className="about-stats">
-                            <div className="stat-card">
-                                <span className="stat-number">25+</span>
+                            <motion.div
+                                className="stat-card"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5 }}
+                            >
+                                <Counter from={0} to={30} suffix="+" className="stat-number" />
                                 <span className="stat-label">Years Experience</span>
-                            </div>
-                            <div className="stat-card">
-                                <span className="stat-number">100%</span>
+                            </motion.div>
+                            <motion.div
+                                className="stat-card"
+                                initial={{ opacity: 0, y: 20 }}
+                                whileInView={{ opacity: 1, y: 0 }}
+                                viewport={{ once: true }}
+                                transition={{ duration: 0.5, delay: 0.2 }}
+                            >
+                                <Counter from={0} to={100} suffix="%" className="stat-number" />
                                 <span className="stat-label">Safety Commitment</span>
-                            </div>
+                            </motion.div>
                         </div>
                     </div>
                 </div>
@@ -106,7 +122,7 @@ const Home = () => {
                             <div className="service-icon"><HardHat size={40} /></div>
                             <h3>Healthcare</h3>
                             <p>Medical office buildings, urgent care centers, surgery centers, imaging suites, labs, and behavioral health facilities.</p>
-                            <Link to="/services" className="card-link">Learn More</Link>
+                            <Link to="/markets/healthcare" className="card-link">Learn More</Link>
                         </div>
                         <div className="service-card">
                             <div className="service-icon"><Building2 size={40} /></div>
@@ -118,7 +134,7 @@ const Home = () => {
                             <div className="service-icon"><Ruler size={40} /></div>
                             <h3>Public Sector</h3>
                             <p>Education buildings, civic and municipal facilities that serve local residents every day.</p>
-                            <Link to="/services" className="card-link">Learn More</Link>
+                            <Link to="/markets/civic-municipal" className="card-link">Learn More</Link>
                         </div>
                     </div>
                 </div>
@@ -131,9 +147,9 @@ const Home = () => {
                     <div className="partners-grid" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '4rem', flexWrap: 'wrap', opacity: 1 }}>
                         <img src={nattyGreenesLogo} alt="Natty Greene's Brewery Construction Project" style={{ height: '80px', objectFit: 'contain' }} />
                         <img src={joymongersLogo} alt="Joymongers Brewing Commercial Upfit" style={{ height: '90px', objectFit: 'contain' }} />
-                        {/* Text placeholders for clients without logos yet */}
-                        <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#444', fontFamily: 'Oswald, sans-serif', textTransform: 'uppercase' }}>UNC Health</div>
-                        <div style={{ fontSize: '1.5rem', fontWeight: '700', color: '#444', fontFamily: 'Oswald, sans-serif', textTransform: 'uppercase' }}>Elon University</div>
+                        <img src={uncHealthLogo} alt="UNC Health Construction Partner" style={{ height: '65px', objectFit: 'contain' }} />
+                        <img src={elonUniversityLogo} alt="Elon University Construction Projects" style={{ height: '80px', objectFit: 'contain' }} />
+
                     </div>
                 </div>
             </section>
@@ -148,6 +164,27 @@ const Home = () => {
             </section>
         </div>
     );
+};
+
+const Counter = ({ from = 0, to, duration = 2, suffix = "", className = "" }) => {
+    const ref = useRef();
+    const inView = useInView(ref, { once: true, margin: "-50px" });
+
+    useEffect(() => {
+        if (inView) {
+            const node = ref.current;
+            const controls = animate(from, to, {
+                duration,
+                onUpdate(value) {
+                    node.textContent = Math.round(value) + suffix;
+                },
+                ease: "easeOut"
+            });
+            return () => controls.stop();
+        }
+    }, [from, to, duration, inView, suffix]);
+
+    return <span ref={ref} className={className}>{from}{suffix}</span>;
 };
 
 export default Home;

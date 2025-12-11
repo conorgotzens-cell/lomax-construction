@@ -173,6 +173,7 @@ export const marketsData = {
     subtitle: 'Precision & Patient Safety',
     metaTitle: 'Healthcare Construction Company NC | Hospital & Medical Office Builders',
     metaDescription: 'Lomax Construction specializes in healthcare facility construction, including medical office buildings, surgery centers, and imaging suites in NC.',
+    image: HealthcareImg,
     content: `
       Healthcare construction demands expertise, safety, and schedule precision. At Lomax Construction, we’ve built facilities across North Carolina that meet strict codes while minimizing disruption to patients and staff. Our <strong>ICRA Class III & IV</strong> trained teams deliver high-quality projects for hospitals, clinics, and specialty providers.
     `,
@@ -191,6 +192,7 @@ export const marketsData = {
     subtitle: 'Inspiring Learning Environments',
     metaTitle: 'Education Construction Contractors NC | School & University Builders',
     metaDescription: 'Building inspiring learning environments from K-12 classrooms to university labs. Expert in phased campus renovations and summer school schedules.',
+    image: EducationImg,
     content: `
       From K-12 schools to higher education, Lomax supports learning environments with safe, flexible, and durable spaces. We understand the constraints of academic calendars and specialize in summer slam projects and phased campus renovations.
     `,
@@ -209,6 +211,7 @@ export const marketsData = {
     subtitle: 'Building for Our Communities',
     metaTitle: 'Civic & Municipal Construction NC | Government Building Contractors',
     metaDescription: 'Experienced contractor for civic and municipal projects in NC. Fire stations, courthouses, libraries, and public works facilities built to last.',
+    image: CivicImg,
     content: `
       We’re proud to build facilities that serve North Carolina communities. Our civic projects are built to last, providing essential services to residents for decades to come.
     `,
@@ -227,6 +230,7 @@ export const marketsData = {
     subtitle: 'ModernWorkplaces',
     metaTitle: 'Corporate Office Construction & Tenant Fit-Outs NC | Lomax Construction',
     metaDescription: 'Transforming corporate workspaces with high-end tenant upfits and office renovations. Creating modern, productive environments in North Carolina.',
+    image: CorporateImg,
     content: `
       Our team creates workplace environments that balance productivity and aesthetics. Whether it's a high-end corporate headquarters or a flexible tech office, we deliver finishes that impress.
     `,
@@ -245,6 +249,7 @@ export const marketsData = {
     subtitle: 'Creating Guest Experiences',
     metaTitle: 'Restaurant & Hospitality Contractors NC | Hotel Renovations',
     metaDescription: 'Specialized construction for restaurants and hospitality. From commercial kitchens to luxury hotel lobbies, we build experiences.',
+    image: HospitalityImg,
     content: `
       From local restaurants to multi-location hospitality brands, Lomax builds customer-focused spaces. We understand the unique MEP requirements of commercial kitchens and the high-level finishes needed for dining areas.
     `,
@@ -263,6 +268,7 @@ export const marketsData = {
     subtitle: 'Powering Production',
     metaTitle: 'Industrial Construction Company NC | Warehouse & Manufacturing',
     metaDescription: 'Industrial construction services for manufacturing plants, distribution centers, and warehouses in NC. Durable, efficient facility solutions.',
+    image: IndustrialImg,
     content: `
       We support North Carolina’s economy by building facilities that power production and distribution. Our industrial team understands the need for durable slabs, high bay heights, and specialized utility infrastructure.
     `,
@@ -292,22 +298,24 @@ export const locationsData = {
     key_towns: ["Greensboro", "Winston-Salem", "High Point", "Burlington", "Kernersville"],
     geo: { lat: 36.1077, lng: -79.9572 }, // Centered on Colfax roughly
     address: {
-      street: "123 Construction Way", // Placeholder to get verified later if needed, but for now enables schema
+      street: "8517 Norcross Rd. Ste. A",
       city: "Colfax",
       state: "NC",
       zip: "27235"
     },
     quickFacts: {
       "Service Type": "Headquarters",
+      "Address": "8517 Norcross Rd. Ste. A, Colfax, NC",
       "Established": "1996",
       "Projects Completed": "500+",
       "Service Radius": "Statewide Hub"
     },
     openingHours: "Mo-Fr 08:00-17:00",
     reviews: [
-      { author: "Sarah Jenkins", role: "Hospital Administrator", text: "Lomax Construction managed our clinic expansion in Greensboro with incredible attention to detail. Their ICRA protocols were flawless.", rating: 5, date: "2024-03-15" },
-      { author: "Michael Ross", role: "Facility Manager", text: "The team at Lomax is our go-to for anything in the Triad. Reliable, distinctively professional, and they always hit their deadlines.", rating: 5, date: "2023-11-02" }
+      { author: "Sarah J.", role: "Regional Healthcare System", text: "Managed our clinic expansion in Greensboro with incredible attention to detail. Their ICRA protocols were flawless.", rating: 5, date: "2024-03-15" },
+      { author: "Michael R.", role: "Manufacturing Facility", text: "The team is our go-to for anything in the Triad. Reliable, distinctively professional, and they always hit their deadlines.", rating: 5, date: "2023-11-02" }
     ],
+
     faq: [
       { question: "Where is Lomax Construction headquartered?", answer: "Our headquarters is located in Colfax, NC, centrally located to serve the entire Piedmont Triad region efficiently." },
       { question: "Do you handle industrial projects in Greensboro?", answer: "Yes, we have extensive experience with industrial upfits and manufacturing facility expansions in Greensboro and surrounding areas." }
@@ -331,9 +339,10 @@ export const locationsData = {
     },
     openingHours: "Mo-Fr 08:00-17:00",
     reviews: [
-      { author: "David Chen", role: "Tech Start-up Founder", text: "We hired Lomax for our new HQ upfit in South End. They navigated the permitting process in Charlotte effortlessly.", rating: 5, date: "2024-01-20" },
-      { author: "Jessica Alverez", role: "Restaurant Owner", text: "Professional and clean. They built out our second location in Matthews and kept the site organized despite the tight space.", rating: 5, date: "2023-08-10" }
+      { author: "David C.", role: "Technology Firm", text: "We hired them for our new HQ upfit in South End. They navigated the permitting process in Charlotte effortlessly.", rating: 5, date: "2024-01-20" },
+      { author: "Jessica A.", role: "Hospitality Group", text: "Professional and clean. They built out our second location and kept the site organized despite the tight space.", rating: 5, date: "2023-08-10" }
     ],
+
     faq: [
       { question: "Are you a licensed general contractor in Charlotte?", answer: "Yes, Lomax Construction is a fully licensed and bonded Unlimited General Contractor serving Charlotte and the entire state of North Carolina." },
       { question: "What types of commercial projects do you build in Charlotte?", answer: "We focus on corporate interiors, healthcare renovations, and retail/hospitality upfits in the Charlotte Metro area." }
@@ -357,9 +366,10 @@ export const locationsData = {
     },
     openingHours: "Mo-Fr 08:00-17:00",
     reviews: [
-      { author: "Dr. Emily Weiss", role: "Lab Director", text: "Complex clean room installation in RTP. Lomax clearly understood the technical requirements and validation needs.", rating: 5, date: "2023-12-05" },
-      { author: "James Thorne", role: "Property Manager", text: "Great communication during our office park renovation in Cary. They minimized disruption to our existing tenants.", rating: 5, date: "2024-02-14" }
+      { author: "Emily W.", role: "Life Sciences Company", text: "Complex clean room installation in RTP. They clearly understood the technical requirements and validation needs.", rating: 5, date: "2023-12-05" },
+      { author: "James T.", role: "Commercial Real Estate Firm", text: "Great communication during our office park renovation in Cary. They minimized disruption to our existing tenants.", rating: 5, date: "2024-02-14" }
     ],
+
     faq: [
       { question: "Do you specialize in lab construction in the Triangle?", answer: "Yes, we have specialized experience in constructing medical and research laboratories, including clean rooms and validation protocols." },
       { question: "Have you worked with universities in the area?", answer: "We have a strong portfolio of education projects and have successfully delivered facilities for major universities in the UNC system." }
@@ -383,9 +393,10 @@ export const locationsData = {
     },
     openingHours: "Mo-Fr 08:00-17:00",
     reviews: [
-      { author: "Mayor Robert T.", role: "Municipal Client", text: "A fantastic partner for our new community center. They respected the budget and the community's vision.", rating: 5, date: "2023-09-22" },
-      { author: "Sarah P.", role: "Hospital Operations", text: "They managed the logistics of building a clinic in a remote area of Boone without any delays.", rating: 5, date: "2024-04-10" }
+      { author: "Robert T.", role: "Local Municipality", text: "A fantastic partner for our new community center. They respected the budget and the community's vision.", rating: 5, date: "2023-09-22" },
+      { author: "Sarah P.", role: "Healthcare Provider", text: "Managed the logistics of building a clinic in a remote area without any delays.", rating: 5, date: "2024-04-10" }
     ],
+
     faq: [
       { question: "Do you build in the mountains of Western NC?", answer: "Yes, we manage construction projects in Western NC, understanding the unique site logistics and topography challenges of the region." },
       { question: "What sectors do you serve in Western NC?", answer: "Our work in Western NC primarily includes civic/municipal projects, healthcare facilities, and higher education campuses." }
@@ -409,8 +420,9 @@ export const locationsData = {
     },
     openingHours: "Mo-Fr 08:00-17:00",
     reviews: [
-      { author: "Tom H.", role: "School Board Member", text: "Delivered our new elementary school wing in time for the fall semester despite a rainy season.", rating: 5, date: "2023-08-25" }
+      { author: "Tom H.", role: "Public School District", text: "Delivered our new elementary school wing in time for the fall semester despite a rainy season.", rating: 5, date: "2023-08-25" }
     ],
+
     faq: [
       { question: "Do you handle hurricane-rated construction?", answer: "Absolutely. We are experienced in coastal building codes and constructing facilities designed to withstand high-wind events." },
       { question: "How far east do you operate?", answer: "We serve clients all the way to the coast, including Wilmington, Jacksonville, and the Outer Banks for major commercial projects." }
@@ -418,32 +430,7 @@ export const locationsData = {
   }
 };
 
-export const teamData = [
-  {
-    id: 'eric-lomax',
-    name: 'Eric Lomax',
-    role: 'President',
-    bio: 'With over 25 years of experience, Eric has led Lomax Construction from a family business to a statewide leader in commercial construction.'
-  },
-  {
-    id: 'member-1',
-    name: 'Senior Leadership',
-    role: 'Vice President',
-    bio: 'Driving operational excellence and overseeing project delivery across all market sectors.'
-  },
-  {
-    id: 'member-2',
-    name: 'Project Executive',
-    role: 'Director of Operations',
-    bio: ' ensuring that every project meets our rigorous standards for safety, quality, and schedule.'
-  },
-  {
-    id: 'member-3',
-    name: 'Senior Management',
-    role: 'Preconstruction Manager',
-    bio: 'Leading our estimating and feasibility teams to provide accurate budgets and value engineering solutions.'
-  }
-];
+
 
 import JoymongersImg2 from '../assets/images/projects/joymongers-2.jpg';
 import JoymongersImg3 from '../assets/images/projects/joymongers-3.jpg';

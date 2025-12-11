@@ -9,6 +9,7 @@ import Services from './pages/Services';
 import ServiceDetail from './pages/ServiceDetail';
 import Projects from './pages/Projects';
 import ProjectDetail from './pages/ProjectDetail';
+import Markets from './pages/Markets';
 import MarketDetail from './pages/MarketDetail';
 import Locations from './pages/Locations';
 import LocationDetail from './pages/LocationDetail';
@@ -30,6 +31,7 @@ function App() {
             <Route path="/services/:slug" element={<ServiceDetail />} />
             <Route path="/projects" element={<Projects />} />
             <Route path="/projects/:slug" element={<ProjectDetail />} />
+            <Route path="/markets" element={<Markets />} />
             <Route path="/markets/:slug" element={<MarketDetail />} />
             <Route path="/locations" element={<Locations />} />
             <Route path="/locations/:slug" element={<LocationDetail />} />
