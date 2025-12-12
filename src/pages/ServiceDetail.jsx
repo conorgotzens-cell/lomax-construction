@@ -95,7 +95,7 @@ const ServiceDetail = () => {
                             };
 
                             const keywords = serviceKeywords[slug] || [];
-                            const relatedProjects = Object.entries(projectsData).filter(([_, project]) =>
+                            const relatedProjects = Object.entries(projectsData).filter(([, project]) =>
                                 project.services && project.services.some(s => keywords.some(k => s.includes(k)))
                             );
 

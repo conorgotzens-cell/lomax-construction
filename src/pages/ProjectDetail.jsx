@@ -10,42 +10,33 @@ const ProjectDetail = () => {
     const project = projectsData[slug];
     const [lightboxIndex, setLightboxIndex] = useState(null);
 
+    // Lightbox Handlers
+    // Lightbox Handlers
+    const openLightbox = React.useCallback((index) => setLightboxIndex(index), []);
+    const closeLightbox = React.useCallback(() => setLightboxIndex(null), []);
+
+    const nextImage = React.useCallback((e) => {
+        if (e) e.stopPropagation();
+        setLightboxIndex((prev) => (prev + 1) % project.galleryImages.length);
+    }, [project.galleryImages.length]);
+
+    const prevImage = React.useCallback((e) => {
+        if (e) e.stopPropagation();
+        setLightboxIndex((prev) => (prev - 1 + project.galleryImages.length) % project.galleryImages.length);
+    }, [project.galleryImages.length]);
+
     // Close lightbox on Escape key
     useEffect(() => {
         const handleKeyDown = (e) => {
             if (e.key === 'Escape') closeLightbox();
-            if (e.key === 'ArrowRight') nextImage();
-            if (e.key === 'ArrowLeft') prevImage();
+            if (e.key === 'ArrowRight') nextImage(null);
+            if (e.key === 'ArrowLeft') prevImage(null);
         };
         if (lightboxIndex !== null) {
             window.addEventListener('keydown', handleKeyDown);
         }
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [lightboxIndex]);
-
-    // Fallback if project not found
-    if (!project) {
-        return (
-            <div className="container" style={{ padding: '5rem', textAlign: 'center' }}>
-                <h2>Project Not Found</h2>
-                <Link to="/projects" className="btn">Back to Projects</Link>
-            </div>
-        );
-    }
-
-    // Lightbox Handlers
-    const openLightbox = (index) => setLightboxIndex(index);
-    const closeLightbox = () => setLightboxIndex(null);
-
-    const nextImage = (e) => {
-        if (e) e.stopPropagation();
-        setLightboxIndex((prev) => (prev + 1) % project.galleryImages.length);
-    };
-
-    const prevImage = (e) => {
-        if (e) e.stopPropagation();
-        setLightboxIndex((prev) => (prev - 1 + project.galleryImages.length) % project.galleryImages.length);
-    };
+    }, [lightboxIndex, closeLightbox, nextImage, prevImage]);
 
     // Project Schema
     const projectSchema = {
@@ -102,48 +93,44 @@ const ProjectDetail = () => {
                                 {project.description}
                             </p>
 
-                            <div className="challenge-solution-block" style={{ display: 'grid', gap: '2rem', marginTop: '3rem' }}>
-                                <div className="challenge" style={{
-                                    background: '#fff0f0',
-                                    padding: '2rem',
-                                    borderRadius: '8px',
-                                    borderLeft: '4px solid #e74c3c'
-                                }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem', color: '#c0392b' }}>
-                                        <div style={{ marginRight: '0.75rem', fontWeight: 'bold', fontSize: '1.2rem' }}>⚠️</div>
-                                        <h3 style={{ margin: 0, fontSize: '1.4rem' }}>The Challenge</h3>
-                                    </div>
-                                    <p style={{ fontSize: '1.05rem', lineHeight: '1.7', color: '#444' }}>{project.challenge}</p>
-                                </div>
-                                <div className="solution" style={{
-                                    background: '#f0fff4',
-                                    padding: '2rem',
-                                    borderRadius: '8px',
-                                    borderLeft: '4px solid #27ae60',
-                                    position: 'relative'
-                                }}>
-                                    <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem', color: '#219150' }}>
-                                        <div style={{ marginRight: '0.75rem', fontWeight: 'bold', fontSize: '1.2rem' }}>✅</div>
-                                        <h3 style={{ margin: 0, fontSize: '1.4rem' }}>The Solution</h3>
-                                    </div>
-                                    <p style={{ fontSize: '1.05rem', lineHeight: '1.7', color: '#444' }}>{project.solution}</p>
-                                </div>
-                            </div>
-
-                            {/* Project Gallery */}
-                            {project.galleryImages && project.galleryImages.length > 0 && (
-                                <div className="project-gallery" style={{ marginTop: '4rem' }}>
-                                    <h3>Project Gallery</h3>
-                                    <div className="gold-line"></div>
-                                    <div className="gallery-grid">
-                                        {project.galleryImages.map((img, index) => (
-                                            <div key={index} className="gallery-item" onClick={() => openLightbox(index)} style={{ cursor: 'pointer' }}>
-                                                <img src={img} alt={`${project.title} gallery image ${index + 1}`} loading="lazy" />
+                            {(project.challenge || project.solution) && (
+                                <div className="challenge-solution-block" style={{ display: 'grid', gap: '2rem', marginTop: '3rem', padding: '1rem', background: '#fafafa', borderRadius: '8px' }}>
+                                    {project.challenge && (
+                                        <div className="challenge" style={{
+                                            background: '#fff',
+                                            padding: '2rem',
+                                            borderRadius: '8px',
+                                            borderLeft: '4px solid #e74c3c',
+                                            boxShadow: '0 2px 4px rgba(0,0,0,0.05)'
+                                        }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem', color: '#c0392b' }}>
+                                                <div style={{ marginRight: '0.75rem', fontWeight: 'bold', fontSize: '1.2rem' }}>⚠️</div>
+                                                <h3 style={{ margin: 0, fontSize: '1.4rem' }}>The Challenge</h3>
                                             </div>
-                                        ))}
-                                    </div>
+                                            <p style={{ fontSize: '1.05rem', lineHeight: '1.7', color: '#444' }}>{project.challenge}</p>
+                                        </div>
+                                    )}
+                                    {project.solution && (
+                                        <div className="solution" style={{
+                                            background: '#fff',
+                                            padding: '2rem',
+                                            borderRadius: '8px',
+                                            borderLeft: '4px solid #27ae60',
+                                            boxShadow: '0 2px 4px rgba(0,0,0,0.05)',
+                                            position: 'relative'
+                                        }}>
+                                            <div style={{ display: 'flex', alignItems: 'center', marginBottom: '1rem', color: '#219150' }}>
+                                                <div style={{ marginRight: '0.75rem', fontWeight: 'bold', fontSize: '1.2rem' }}>✅</div>
+                                                <h3 style={{ margin: 0, fontSize: '1.4rem' }}>The Solution</h3>
+                                            </div>
+                                            <p style={{ fontSize: '1.05rem', lineHeight: '1.7', color: '#444' }}>{project.solution}</p>
+                                        </div>
+                                    )}
                                 </div>
                             )}
+
+                            {/* Project Gallery */}
+
                         </div>
 
                         {/* Sidebar */}
@@ -177,6 +164,21 @@ const ProjectDetail = () => {
                         </aside>
 
                     </div>
+
+                    {/* Project Gallery - Full Width */}
+                    {project.galleryImages && project.galleryImages.length > 0 && (
+                        <div className="project-gallery" style={{ marginTop: '4rem' }}>
+                            <h3>Project Gallery</h3>
+                            <div className="gold-line"></div>
+                            <div className="gallery-grid">
+                                {project.galleryImages.map((img, index) => (
+                                    <div key={index} className="gallery-item" onClick={() => openLightbox(index)} style={{ cursor: 'pointer' }}>
+                                        <img src={img} alt={`${project.title} gallery image ${index + 1}`} loading="lazy" />
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
                 </div>
             </section>
 

@@ -1,3 +1,4 @@
+
 import { useEffect, useRef } from 'react';
 import { motion, useInView, animate } from 'framer-motion';
 import { Link } from 'react-router-dom';
@@ -50,8 +51,7 @@ const Home = () => {
                         <span className="text-highlight">FUTURE SINCE 1996</span>
                     </h1>
                     <p className="hero-subtitle">
-                        Trusted NC general contractor specializing in healthcare, civic, education, and commercial projects.
-                        Design-build, CM, renovations, and upfits.
+                        Building North Carolina's future with precision. Your trusted partner for complex healthcare, civic, and commercial construction since 1996.
                     </p>
                     <div className="hero-actions">
                         <Link to="/contact" className="btn">Request a Consultation</Link>
@@ -72,9 +72,10 @@ const Home = () => {
                             <h2>Building Lasting Partnerships</h2>
                             <div className="gold-line"></div>
                             <p>
-                                At Lomax Construction, we build more than projects—we build lasting partnerships across North Carolina.
-                                Since 1996, our team has delivered healthcare, civic, education, and commercial construction projects
-                                that shape local communities and support long-term growth.
+                                We don't just pour concrete; we build certainty. For over 30 years, Lomax Construction has delivered complex projects on time and on budget, turning first-time clients into lifelong partners.
+                            </p>
+                            <p style={{ marginTop: '1rem' }}>
+                                From healthcare upgrades to municipal landmarks, we have shaped the communities where we live and work since 1996.
                             </p>
                             <p style={{ marginTop: '1rem' }}>
                                 Whether you need design-build, construction management, general contracting, or phased renovations,

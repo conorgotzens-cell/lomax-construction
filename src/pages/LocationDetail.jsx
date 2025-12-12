@@ -11,7 +11,7 @@ const LocationDetail = () => {
     const location = locationsData[slug];
 
     // Filter projects for this region
-    const regionProjects = Object.entries(projectsData).filter(([_, p]) => p.region === slug);
+    const regionProjects = Object.entries(projectsData).filter(([, p]) => p.region === slug);
 
     if (!location) {
         return <div className="container" style={{ padding: '5rem' }}><h2>Location not found</h2><Link to="/locations" className="btn">Back to Locations</Link></div>;
@@ -136,6 +136,19 @@ const LocationDetail = () => {
                                 <MapPin size={32} color="var(--color-accent)" />
                                 <span>Serving {location.title} and surrounding areas {location.key_towns && `including ${location.key_towns.slice(0, 3).join(', ')}`}</span>
                             </div>
+
+                            {location.localImpact && (
+                                <div className="local-impact-box" style={{
+                                    marginTop: '2rem',
+                                    padding: '1.5rem',
+                                    background: 'linear-gradient(to right, #f8f9fa, white)',
+                                    borderLeft: '4px solid var(--color-accent)',
+                                    borderRadius: '4px'
+                                }}>
+                                    <h4 style={{ margin: '0 0 0.5rem', fontSize: '1.1rem', color: 'var(--color-primary)' }}>Our Impact in {location.title}</h4>
+                                    <p style={{ margin: 0, fontSize: '1.05rem', color: '#333', fontWeight: '500' }}>{location.localImpact}</p>
+                                </div>
+                            )}
 
                             <div className="mt-4 text-content" dangerouslySetInnerHTML={{ __html: DOMPurify.sanitize(location.content) }} />
 

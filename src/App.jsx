@@ -16,6 +16,7 @@ import LocationDetail from './pages/LocationDetail';
 import Contact from './pages/Contact';
 import Insights from './pages/Insights';
 import BlogPost from './pages/BlogPost';
+import NotFound from './pages/NotFound';
 
 function App() {
   return (
@@ -37,7 +38,10 @@ function App() {
             <Route path="/locations/:slug" element={<LocationDetail />} />
             <Route path="/insights" element={<Insights />} />
             <Route path="/insights/:slug" element={<BlogPost />} />
+            <Route path="/blog" element={<Insights />} />
+            <Route path="/blog/:slug" element={<BlogPost />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </main>
         <Footer />

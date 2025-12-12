@@ -52,7 +52,7 @@ const About = () => {
                         <h2>Building a Legacy of Quality</h2>
                         <div className="gold-line"></div>
                         <p>
-                            In July of 1996, John Lomax established Lomax Construction, Inc. with a clear vision: to bring a higher standard of integrity and hands-on commitment to the North Carolina construction market. Leaving a position at a respected general contractor, John built a foundation that prioritized unique, complex projects over volume.
+                            Founded in 1996, Lomax Construction began with a singular vision: to bring a higher standard of integrity to the NC construction market. Leaving a position at a respected general contractor, John Lomax built a foundation that prioritized unique, complex projects over volume.
                         </p>
                         <p style={{ marginTop: '1rem' }}>
                             We grew steadily, earning a reputation for quality and the ability to deliver challenging builds that others might shy away from. Our clients know that our hands-on approach and absolute level of focus ensure success on their projects every time. At Lomax, big company capability truly meets small company attention.
@@ -78,7 +78,7 @@ const About = () => {
                                 </p>
                             </div>
                             <div className="delivery-item">
-                                <h4>Construction Management (CM@R)</h4>
+                                <h4>Construction Management (CMAR)</h4>
                                 <p>
                                     Similar to our negotiated approach, we act as both Construction Manager and General Contractor to eliminate duplicated fees. This method ensures rigorous oversight from pre-construction through closeout.
                                 </p>

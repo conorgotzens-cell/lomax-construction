@@ -15,8 +15,7 @@ const MarketDetail = () => {
     }
 
     // Filter projects for this market
-    const relatedProjects = Object.entries(projectsData)
-        .filter(([_, project]) => project.marketSlug === slug)
+    const relatedProjects = Object.entries(projectsData).filter(([, p]) => p.marketSlug === slug)
         .map(([slug, project]) => ({ slug, ...project }));
 
     const schemas = [];
