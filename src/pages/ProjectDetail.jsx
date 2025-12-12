@@ -83,7 +83,7 @@ const ProjectDetail = () => {
 
             <section className="section">
                 <div className="container">
-                    <div className="project-detail-grid" style={{ display: 'grid', gridTemplateColumns: '2fr 1fr', gap: '3rem' }}>
+                    <div className="project-detail-grid">
 
                         {/* Main Content */}
                         <div className="content-block">
